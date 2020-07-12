@@ -171,5 +171,5 @@ getRowColumnCount : function(boxSize) {
 }
 };
 
-module.exports = Utils;
+//module.exports = Utils;
 

@@ -1,10 +1,11 @@
-var MinHeap = require('./MinHeap');
-var Path = require('./Path');
-var Heuristic = require('./Heuristic');
-var DiagonalOptions = require('./DiagonalOptions');
+//var MinHeap = require('./MinHeap');
+//var Path = require('./Path');
+//var Heuristic = require('./Heuristic');
+//var DiagonalOptions = require('./DiagonalOptions');
 
-function AStar(options)
+class AStar
 {
+    constructor(options){
     options = options || {};
 
     //this.heuristic = opt.heuristic || Heuristic.Manhattan;
@@ -30,7 +31,7 @@ function AStar(options)
     }
 }
 
-AStar.prototype.pathFinder = function(startX, startY, endX, endY, graph, algo = 'a-star', color = true)
+pathFinder(startX, startY, endX, endY, graph, algo = 'a-star', color = true)
 {
     //graph.resetTraversal();
 
@@ -118,6 +119,6 @@ AStar.prototype.pathFinder = function(startX, startY, endX, endY, graph, algo = 
         }
     }
     return [];
-};
+}};
 
-module.exports = AStar;
+//module.exports = AStar;

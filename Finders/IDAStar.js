@@ -8,9 +8,9 @@ cutoff. Similar to IDDFS among brute-force searches, IDA* is asymptotically opti
 usage among heuristic searches.
 */
 
-var DiagonalOptions = require('./DiagonalOptions')
-var Node = require('./Node');
-var Heuristic = require('./Heuristic');
+//var DiagonalOptions = require('./DiagonalOptions')
+//var Node = require('./Node');
+//var Heuristic = require('./Heuristic');
 
 function IDAStar(options)
 {
@@ -161,5 +161,5 @@ IDAStar.prototype.PathFinder = function(startX, startY, endX, endY, graph)
     return [];
 };
 
-module.exports = IDAStar;
+//module.exports = IDAStar;
 

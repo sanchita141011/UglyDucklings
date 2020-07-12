@@ -21,4 +21,4 @@ const Heuristic = {
   }
 };
 
-module.exports = Heuristic;
+//module.exports = Heuristic;

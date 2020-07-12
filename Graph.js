@@ -31,17 +31,18 @@ class Graph {
       this.gridOfNodes = gridOfNodes;
     }
 
-    if (matrix.length != this.rowCount || matrix[0].length != this.columnCount) {
+    else if (matrix.length != this.rowCount || matrix[0].length != this.columnCount) {
       throw new Error("Matrix size does not fit");
     }
 
+    else{
     for (i = 0; i < this.rowCount; i++) {
       for (j = 0; j < this.columnCount; j++) {
         if (matrix[i][j] != 1) {
           gridOfNodes[i][j].weight = matrix[i][j];
         }
       }
-    }
+    }}
 
     this.gridOfNodes = gridOfNodes;
   }

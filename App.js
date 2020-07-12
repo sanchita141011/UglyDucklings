@@ -1,14 +1,14 @@
-var Graph = require('./Graph');
-var Grid = require('./Grid');
-var Runner = require('./Runner');
-var Utils = require('./utilities');
-var Grid = require('./Grid');
+//var Graph = require('./Graph');
+//var Grid = require('./Grid');
+//var Runner = require('./Runner');
+//var Utils = require('./utilities');
+//var Grid = require('./Grid');
 function processGrid(rowCount, columnCount, width, height, boxSize) {
   project.clear();
-  const graph = new Graph(rowCount, columnCount, Grid.Box);
+  const graph = new Graph(rowCount, columnCount, Box);
   graph.createGrid();
   graph.process();
-  states.Context.ActiveGrid = new Grid.Grid(width, height, graph, boxSize);
+  states.Context.ActiveGrid = new Grid(width, height, graph, boxSize);
   states.Context.Runner = new Runner(states.Context.ActiveGrid);
   states.Context.Runner.paintGrid();
 

@@ -1,5 +1,5 @@
-var Path = require('./Path');
-var DiagonalOptions = require('./DiagonalOptions');
+//var Path = require('./Path');
+//var DiagonalOptions = require('./DiagonalOptions');
 
 //for unweighted graphs
 
@@ -66,6 +66,6 @@ BreadthFirstSearch.prototype.PathFinder = function(startX, startY, endX, endY, g
     return [];
 };
 
-module.exports = BreadthFirstSearch;
+//module.exports = BreadthFirstSearch;
 
 

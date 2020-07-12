@@ -1,4 +1,4 @@
-var MinPathSort = require('./Finders/MinPathSort');
+//var MinPathSort = require('./Finders/MinPathSort');
 
 function MultipleStops(options)
 {
@@ -17,4 +17,4 @@ MultipleStops.prototype.pathFinder = function(activeGrid)
     return route;
 }
 
-module.exports = MultipleStops;
+//module.exports = MultipleStops;

@@ -14,8 +14,8 @@
 [src 2 3 1 tgt]; f : 0-2-3-1-4 => 31
 */
 
-var AStar = require('./Finders/AStar');
-var Heuristic = require('./Heuristic');
+//var AStar = require('./Finders/AStar');
+//var Heuristic = require('./Heuristic');
 
 function MinPathSort(options)
 {
@@ -146,4 +146,4 @@ MinPathSort.prototype.buildPath = function(maxCost, graph)
     return route;
 };
 
-module.exports = MinPathSort;
+//module.exports = MinPathSort;

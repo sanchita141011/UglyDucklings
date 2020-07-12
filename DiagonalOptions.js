@@ -6,4 +6,4 @@ var DiagonalOptions =
     Never : 4
 };
 
-module.exports = DiagonalOptions;
+//module.exports = DiagonalOptions;

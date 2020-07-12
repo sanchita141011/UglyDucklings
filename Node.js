@@ -1,5 +1,5 @@
 class Node {
-  constructor(x, y, weight = 1) {
+  constructor(x, y, weight) {
     this.x = x;
 
     this.y = y;
@@ -26,4 +26,4 @@ class Node {
   }*/
 }
 
-module.exports = Node;
+//module.exports = Node;

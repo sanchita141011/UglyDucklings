@@ -9,9 +9,9 @@ increasing depth: first one, then two, and so on until the goal is found. We can
 with a depth equal to the straight-line distance from the start to the goal. This search is 
 asymptotically optimal among brute force searches in both space and time.
 */
-var DiagonalOptions = require('./DiagonalOptions');
-var Heuristic = require('./Heuristic');
-var Path = require('./Path');
+//var DiagonalOptions = require('./DiagonalOptions');
+//var Heuristic = require('./Heuristic');
+//var Path = require('./Path');
 
 function IDDepthFirstSearch(options)
 {
@@ -122,4 +122,4 @@ IDDepthFirstSearch.prototype.pathFinder = function(startX, startY, endX, endY, a
     }
 };
 
-module.exports = IDDepthFirstSearch;
+//module.exports = IDDepthFirstSearch;

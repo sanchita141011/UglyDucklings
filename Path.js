@@ -20,4 +20,4 @@ Path.prototype.traceFromEnd = function(end)
     return path.reverse();
 };
     
-module.exports = Path;
+//module.exports = Path;

@@ -1,4 +1,4 @@
-var Node = require('./Node');
+//var Node = require('./Node');
 
 class Box extends Node {
   constructor(x, y, weight) {
@@ -145,7 +145,7 @@ class Box extends Node {
   }
 };
 
-exports.Box = Box;
+//exports.Box = Box;
 
 class Grid {
   constructor(width, height, graph, boxSize) {
@@ -391,4 +391,4 @@ class Grid {
   }
 }
 
-exports.Grid = Grid;
+//exports.Grid = Grid;
