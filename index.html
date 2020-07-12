@@ -105,42 +105,185 @@
                      <i class="fa fa-square-o"></i> Algorithm
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                           <a class="dropdown-item algo-selection" data-algo="idDepthFirst">ID Depth First Search (IDDFS)
-                           </a>
-                        </li>
-                        <li>
-                           <a class="dropdown-item algo-selection" data-algo="bfs">Breadth First Search (BFS)
-                           </a>
-                        </li>
-                        <li>
-                           <a class="dropdown-item algo-selection" data-algo="bestFirst">Bi-Directional Search (BFS)
-                             </a>
-                        </li>
-                        <li>
-                           <a class="dropdown-item algo-selection" data-algo="aStar">
-                              Bi-Directional Search (DFS)
+                        <li class="dropdown-submenu">
+                           <a class="dropdown-item dropdown-toggle algo-selection" data-algo="idDepthFirst">
+                              ID Depth First Search (IDDFS)
                             </a>
+                           <ul class="dropdown-menu">
+                              <li>
+                                 <label class="dropdown-item">Allow diagonal
+                                    <span class="checkmark"></span>
+                                    <input type="checkbox">
+                                  </label>
+                              </li>
+                              <li>
+                                 <label class="dropdown-item">Don't Cross corners
+                                    <span class="checkmark"></span>
+                                    <input type="checkbox">
+                                  </label>
+                              </li>
+                              <li>
+                                 <label class="dropdown-item">Bi-directional
+                                    <span class="checkmark"></span>
+                                    <input type="checkbox">
+                                  </label>
+                              </li>
+                              </ul>
+                              </li>
+                           <li class="dropdown-submenu">
 
-                        </li>
-                        <li>
-                           <a class="dropdown-item algo-selection" data-algo="multiStop">
-                              Bi-Directional Search (DFS)
-                            </a>
+                              <a class="dropdown-item dropdown-toggle algo-selection" data-algo="bfs">
+                                 Breadth First Search (BFS)
+                               </a>
+                              <ul class="dropdown-menu">
+                                 <li>
+                                    <label class="dropdown-item">Allow diagonal
+                                       <span class="checkmark"></span>
+                                       <input type="checkbox">
+                                     </label>
+                                 </li>
+                                 <li>
+                                    <label class="dropdown-item">Don't Cross corners
+                                       <span class="checkmark"></span>
+                                       <input type="checkbox">
+                                     </label>
+                                 </li>
+                                 <li>
+                                    <label class="dropdown-item">Bi-directional
+                                       <span class="checkmark"></span>
+                                       <input type="checkbox">
+                                     </label>
+                                 </li>
+                                 </ul>
+                              </li>
+                              <li class="dropdown-submenu">
+                                 <a class="dropdown-item dropdown-toggle algo-selection" data-algo="bestfirst">
+                                    Bi-Directional Search (BFS)
+                                  </a>
+                                 <ul class="dropdown-menu">
+                                    <li>
+                                       <label class="dropdown-item">Allow diagonal
+                                          <span class="checkmark"></span>
+                                          <input type="checkbox">
+                                        </label>
+                                    </li>
+                                    <li>
+                                       <label class="dropdown-item">Don't Cross corners
+                                          <span class="checkmark"></span>
+                                          <input type="checkbox">
+                                        </label>
+                                    </li>
+                                    <li>
+                                       <label class="dropdown-item">Bi-directional
+                                          <span class="checkmark"></span>
+                                          <input type="checkbox">
+                                        </label>
+                                    </li>
+                                    </ul>
+                                 </li>
+                                 <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle algo-selection" data-algo="aStar">
+                                       Bi-Directional Search (DFS)
+                                     </a>
+                                    <ul class="dropdown-menu">
+                                       <li>
+                                          <label class="dropdown-item">Allow diagonal
+                                             <span class="checkmark"></span>
+                                             <input type="checkbox">
+                                           </label>
+                                       </li>
+                                       <li>
+                                          <label class="dropdown-item">Don't Cross corners
+                                             <span class="checkmark"></span>
+                                             <input type="checkbox">
+                                           </label>
+                                       </li>
+                                       <li>
+                                          <label class="dropdown-item">Bi-directional
+                                             <span class="checkmark"></span>
+                                             <input type="checkbox">
+                                           </label>
+                                       </li>
+                                       </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                       <a class="dropdown-item dropdown-toggle algo-selection" data-algo="multiStop">
+                                          Bi-Directional Search (DFS)
+                                        </a>
+                                       <ul class="dropdown-menu">
+                                          <li>
+                                             <label class="dropdown-item">Allow diagonal
+                                                <span class="checkmark"></span>
+                                                <input type="checkbox">
+                                              </label>
+                                          </li>
+                                          <li>
+                                             <label class="dropdown-item">Don't Cross corners
+                                                <span class="checkmark"></span>
+                                                <input type="checkbox">
+                                              </label>
+                                          </li>
+                                          <li>
+                                             <label class="dropdown-item">Bi-directional
+                                                <span class="checkmark"></span>
+                                                <input type="checkbox">
+                                              </label>
+                                          </li>
+                                          </ul>
+</li>
+<li class="dropdown-submenu">
+                                          <a class="dropdown-item dropdown-toggle algo-selection" data-algo="idAStar">
+                                             Bi-Directional Search (DFS)
+                                           </a>
+                                          <ul class="dropdown-menu">
+                                             <li>
+                                                <label class="dropdown-item">Allow diagonal
+                                                   <span class="checkmark"></span>
+                                                   <input type="checkbox">
+                                                 </label>
+                                             </li>
+                                             <li>
+                                                <label class="dropdown-item">Don't Cross corners
+                                                   <span class="checkmark"></span>
+                                                   <input type="checkbox">
+                                                 </label>
+                                             </li>
+                                             <li>
+                                                <label class="dropdown-item">Bi-directional
+                                                   <span class="checkmark"></span>
+                                                   <input type="checkbox">
+                                                 </label>
+                                             </li>
+                                             </ul>
+                                          </li>
 
-                        </li>
-                        <li>
-                           <a class="dropdown-item algo-selection" data-algo="idAStar">
-                              Bi-Directional Search (DFS)
-                            </a>
 
-                        </li>
-                        <li>
-                           <a class="dropdown-item algo-selection" data-algo="dijkstra">
-                              Dijkstra's Algorithm (A* with h=0)
-                          </a>
-
-                        </li>
+                                          <li class="dropdown-submenu">
+                                             <a class="dropdown-item dropdown-toggle algo-selection" data-algo="dijkstra">
+                                                Dijkstra's Algorithm (A* with h=0)
+                                              </a>
+                                             <ul class="dropdown-menu">
+                                                <li>
+                                                   <label class="dropdown-item">Allow diagonal
+                                                      <span class="checkmark"></span>
+                                                      <input type="checkbox">
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                   <label class="dropdown-item">Don't Cross corners
+                                                      <span class="checkmark"></span>
+                                                      <input type="checkbox">
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                   <label class="dropdown-item">Bi-directional
+                                                      <span class="checkmark"></span>
+                                                      <input type="checkbox">
+                                                    </label>
+                                                </li>
+                                                </ul>
+                                             </li>
+                       
                         <li class="dropdown-submenu">
                            <a class="dropdown-item dropdown-toggle">
                               A* Algorithms (ε =
