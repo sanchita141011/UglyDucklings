@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8" />
+      <meta
+         name="viewport"
+         content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no"
+         />
+      <meta
+         name="description"
+         content="Shortest Path Finder "
+         />
+      <meta
+         name="keywords"
+         content="Path, Visualizer, Pathfinding, PathFinder, Algorithm, graph, GraphAlgorithm,"
+         />
+      <meta name="author" content="Gowri Jayaprakash" />
+      <link rel="shortcut icon" href="src/assets/logo.png" type="image/x-icon" />
+
+      <!-- HERE -->
+    <script type="text/javascript" src="./lib/ui/jquery.ui.accordion.min.js"></script>
+    <script type="text/javascript" src="./lib/ui/jquery.ui.slider.min.js"></script>
+
+      <!-- TO HERE-->
+
+    </style>
+      <!-- font awesome -->
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+         crossorigin="anonymous"
+         />
+      <!-- Bootstrap CSS -->
+      <link
+         rel="stylesheet"
+         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+         crossorigin="anonymous"
+         />
+      <link rel="stylesheet" href="style/css/main.css" />
+      <title>Shortest Path Algorithms</title>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165471746-1"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+
+         gtag('config', 'UA-165471746-1');
+      </script>
+   </head>
+   <body>        
+      <section id="home">
+         <nav class="navbar navbar-expand-lg navbar-inverse navbar-light bg-warning py-0 sticky-top" >
+            <a class="navbar-brand d-flex text-black">
+               <!-- Codess 2020-->  &nbsp;
+               <div class="d-none action-panel d-lg-none ">
+                  <button class="btn btn-warning btn-sm start-stop-btn">
+                  Visualize
+                  </button>
+               </div>
+            </a>
+            <button
+               class="navbar-toggler p-0"
+               type="button"
+               data-toggle="collapse"
+               data-target="#navbar"
+               aria-controls="navbarSupportedContent"
+               aria-expanded="false"
+               aria-label="Toggle navigation"
+               >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+               <ul class="navbar-nav mr-auto  ml-auto text-center">
+                  <li class="nav-item dropdown">
+                     <a
+                        class="nav-link dropdown-toggle text-info"
+                        href="#"
+                        id="fill-block"
+                        role="button"
+                        data-toggle="dropdown"
+                        title="Create Random Walls"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >
+                     <i class="fa fa-square-o"></i> Create Blocks
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item disabled" onclick="RandomGrid()"
+                           >Random Grid</a>
+                     </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a
+                        class="nav-link dropdown-toggle text-info"
+                        href="#"
+                        id="algo-choice"
+                        role="button"
+                        data-toggle="dropdown"
+                        title="Choose Algorithm"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >
+                     <i class="fa fa-square-o"></i> Algorithm
+                     </a>
+                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                           <a class="dropdown-item algo-selection" data-algo="idDepthFirst">ID Depth First Search (IDDFS)
+                           </a>
+                        </li>
+                        <li>
+                           <a class="dropdown-item algo-selection" data-algo="bfs">Breadth First Search (BFS)
+                           </a>
+                        </li>
+                        <li>
+                           <a class="dropdown-item algo-selection" data-algo="bestFirst">Bi-Directional Search (BFS)
+                             </a>
+                        </li>
+                        <li>
+                           <a class="dropdown-item algo-selection" data-algo="aStar">
+                              Bi-Directional Search (DFS)
+                            </a>
+
+                        </li>
+                        <li>
+                           <a class="dropdown-item algo-selection" data-algo="multiStop">
+                              Bi-Directional Search (DFS)
+                            </a>
+
+                        </li>
+                        <li>
+                           <a class="dropdown-item algo-selection" data-algo="idAStar">
+                              Bi-Directional Search (DFS)
+                            </a>
+
+                        </li>
+                        <li>
+                           <a class="dropdown-item algo-selection" data-algo="dijkstra">
+                              Dijkstra's Algorithm (A* with h=0)
+                          </a>
+
+                        </li>
+                        <li class="dropdown-submenu">
+                           <a class="dropdown-item dropdown-toggle">
+                              A* Algorithms (ε =
+                           <span id="admissibleValueDisplay"></span> )</a
+                              >
+                           <ul class="dropdown-menu">
+                              <li>
+                                 <a
+                                    class="dropdown-item algo-selection"
+                                    data-algo="astar"
+                                    data-h="manhattan"
+                                    >
+                                 A* (using Manhattan Heuristic)
+                                 </a>
+                              </li>
+                              <li>
+                                 <a
+                                    class="dropdown-item algo-selection"
+                                    data-algo="astar"
+                                    data-h="euclidean"
+                                    >
+                                 A* (using Euclidean Heuristic)
+                                 </a>
+                              </li>
+                              <li class="dropdown-submenu">
+                                 <a class="dropdown-item dropdown-toggle"
+                                    >A* (using Diagonal Heuristic)</a
+                                    >
+                                 <ul class="dropdown-menu">
+                                    <li>
+                                       <a
+                                          class="dropdown-item algo-selection"
+                                          data-algo="astar"
+                                          data-h="diagonal"
+                                          data-d="1"
+                                          >
+                                       with Chebyshev distance (D = 1, D2 = 1)
+                                       </a>
+                                    </li>
+                                    <li>
+                                       <a
+                                          class="dropdown-item algo-selection"
+                                          data-algo="astar"
+                                          data-h="diagonal"
+                                          data-d="2"
+                                          >
+                                       with Octile distance (D = 1, D2 = sqrt(2))
+                                       </a>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a
+                        class="nav-link dropdown-toggle text-info"
+                        id="algo-choice"
+                        role="button"
+                        data-toggle="dropdown"
+                        title="Change Speed"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >
+                     <i class="fa fa-square-o"></i> Speed
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item speed-selection" data-speed="Fast">
+                        Fast
+                        </a>
+                        <a class="dropdown-item speed-selection" data-speed="Medium">
+                        Medium
+                        </a>
+                        <a class="dropdown-item speed-selection" data-speed="Slow">
+                        Slow
+                        </a>
+                     </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a
+                        class="nav-link dropdown-toggle text-info"
+                        role="button"
+                        data-toggle="dropdown"
+                        >
+                     <i class="fa fa-square-o"></i> Settings
+                     </a>
+                     <div class="dropdown-menu">
+                        <!--rows input -->
+                        <div class="p-2 d-none d-md-block">
+                           <div class="input-group input-group-sm">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text" id="inputGroup-sizing-sm"
+                                    >Rows</span
+                                    >
+                              </div>
+                              <input
+                                 type="number"
+                                 class="form-control"
+                                 id="row-count"
+                                 min="0"
+                                 />
+                           </div>
+                        </div>
+                        <!--column input -->
+                        <div class="p-2 d-none d-md-block">
+                           <div class="input-group input-group-sm">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text" id="inputGroup-sizing-sm"
+                                    >Columns</span
+                                    >
+                              </div>
+                              <input
+                                 type="number"
+                                 class="form-control"
+                                 id="column-count"
+                                 min="0"
+                                 />
+                           </div>
+                        </div>
+                        <!--boxsize input -->
+                        <div class="p-2">
+                           <div class="input-group input-group-sm">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text" id="inputGroup-sizing-sm"
+                                    >Box Size</span
+                                    >
+                              </div>
+                              <input
+                                 type="number"
+                                 class="form-control"
+                                 id="box-size"
+                                 value="0"
+                                 placeholder="0 = auto"
+                                 min="10"
+                                 />
+                           </div>
+                        </div>
+                        <!--ε-admissible input -->
+                        <div class="p-2">
+                           <div
+                              class="input-group input-group-sm"
+                              data-toggle="tooltip"
+                              data-title="Used for weighted heuristic function hw = ε*ha(n)"
+                              >
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text" id="">ε admissible</span>
+                              </div>
+                              <input
+                                 type="number"
+                                 class="form-control"
+                                 id="admissible-value"
+                                 value="5"
+                                 min="1"
+                                 />
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+
+                  <li class="nav-item">
+                     <a
+                        class="nav-link"
+                        href=""
+                        target="_blank"
+                        >
+                     <i class="fa fa-github"></i> Github</a
+                        >
+                  </li>
+                  <li class="nav-item d-none mt-md-0 py-1 action-panel mx-auto">
+                     <div class="d-none d-md-block">
+                        <button class="btn btn-warning btn-sm px-5 start-stop-btn">
+                        Visualize
+                        </button>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+         <section class="container-fluid bg-light">
+            <section id="toolbar">
+               <div class="d-flex row justify-content-start px-2">
+                  
+                  <div class="pb-0 p-2">
+                     <div
+                        class="btn-group btn-group-sm btn-group-toggle"
+                        role="group"
+                        aria-label="tool mode"
+                        data-toggle="buttons"
+                        >
+                        <label
+                           class="btn btn-success  active"
+                           data-toggle="tooltip"
+                           title="Start Node"
+                           >
+                        <input
+                           type="radio"
+                           name="selectionMode"
+                           value="START_NODE"
+                           autocomplete="off"
+                           checked
+                           />
+                        Start Node
+                        </label>
+                        <label
+                           class="btn btn-danger"
+                           data-toggle="tooltip"
+                           title="End Node"
+                           >
+                        <input
+                           type="radio"
+                           name="selectionMode"
+                           value="TARGET_NODE"
+                           autocomplete="off"
+                           />
+                        End Node
+                        </label>
+                        <label
+                           class="btn btn-dark"
+                           data-toggle="tooltip"
+                           title="Wall blocks"
+                           >
+                        <input
+                           type="radio"
+                           name="selectionMode"
+                           value="WALL_NODES"
+                           autocomplete="off"
+                           />
+                        Wall Node
+                        </label>
+                     </div>
+                  </div>
+                  <!-- algorithm name display and clear graph btn -->
+                  <div
+                     class="pb-0 p-2 d-flex justify-content-center align-items-center"
+                     >
+                     <small class="mx-auto">
+                     <b data-toggle="tooltip" title="Selected Algorithm">Algorithm: </b>
+                     <span
+                        id="selected-algo-name"
+                        data-toggle="tooltip"
+                        data-title="Dijkstra's Algorithm"
+                        >...</span
+                        >&nbsp;
+                     <b data-toggle="tooltip" title="Traversing Speed">Speed: </b>
+                     <span id="selected-speed-name">Fast</span>&nbsp;
+                     <b
+                        data-toggle="tooltip"
+                        title="Time to find the path in ms (Note: inclusive of frame delays)"
+                        >Time:
+                     </b>
+                     <span id="runner-duration">...</span>&nbsp;
+                     </small>
+                     <button class="btn btn-sm btn-secondary" id="reset-graph-btn">
+                     Reset Graph
+                     </button>
+                     &nbsp;
+                     <button class="btn btn-sm btn-secondary" id="clear-graph-btn">
+                     Clear Graph
+                     </button>
+                  </div>
+               </div>
+            </section>
+
+            <!--<script>
+               function dropDownFunc(elem)
+               {
+                  document.getElementById(elem).classList.toggle("show");
+               }
+            </script>
+
+            <div id="algorithm_panel" class="panel-group panel right_panel" style="overflow-y: scroll; height: 500px;">
+
+               <div class="d-none action-panel d-lg-none ">
+                  <button class="btn btn-info btn-lg start-stop-btn">
+                     Visualize
+                  </button>
+               </div>
+
+               <header><h2 class="header_title">Select Algorithm</h2></header>
+                  <div class="panel-heading">
+                     <h4 class="panel-title">
+                        <button type="button" class="btn btn-block dropbtn algo-selection" data-toggle="collapse" data-target="#astar_section" data-algo="aStar" aria-expanded="false">A*</button>
+                     </h4>
+                  </div>
+                        
+                  <div id="astar_section" class="finder_section panel-collapse collapse collapse in" data-parent="#algorithm_panel">
+                     <div class="panel-body">
+                        <header class="option_header">
+                           <h3>Heuristic</h3>
+                        </header>
+                        <div id="astar_heuristic" class="sub_options">
+                           <input type="radio" name="astar_heuristic" value="manhattan" checked />
+                           <label class="option_label">Manhattan</label> <br>
+                           <input type="radio" name="astar_heuristic" value="euclidean"/>
+                           <label class="option_label">Euclidean</label> <br>
+                           <input type="radio" name="astar_heuristic" value="octile"/>
+                           <label class="option_label">Octile</label> <br>
+                           <input type="radio" name="astar_heuristic" value="chebyshev"/>
+                           <label class="option_label">Chebyshev</label> <br>
+                        </div>
+            
+                        <header class="option_header">
+                           <h3>Options</h3>
+                        </header>
+                        <div class="optional sub_options">
+                           <input type="checkbox" class="allow_diagonal" checked>
+                           <label class="option_label">Allow Diagonal</label> <br>
+                           <input type="checkbox" class="bi-directional">
+                           <label class="option_label">Bi-directional</label> <br>
+                           <input type="checkbox" class="dont_cross_corners">
+                           <label class="option_label">Don't Cross Corners</label> <br>
+                           <input class="spinner" name="astar_weight" value="1">
+                           <label class="option_label">Weight</label> <br> -->
+                        <!--</div>
+                     </div>
+                  </div>
+
+                  <div class="panel-heading">
+                     <h4 class="panel-title">
+                        <button type="button" class="btn btn-block dropbtn algo-selection" data-toggle="collapse" data-target="#ida_section" data-algo="idaStar" aria-expanded="false">IDA*</button>
+                     </h4>
+                  </div>
+                  <div id="ida_section" class="finder_section panel-collapse collapse collapse in" data-parent="#algorithm_panel">
+                     <div class="panel-body">
+                        <header class="option_header">
+                           <h3>Heuristic</h3>
+                        </header>
+                        <div id="ida_heuristic" class="sub_options">
+                           <input type="radio" name="ida_heuristic" value="manhattan" checked />
+                           <label class="option_label">Manhattan</label> <br>
+                           <input type="radio" name="ida_heuristic" value="euclidean"/>
+                           <label class="option_label">Euclidean</label> <br>
+                           <input type="radio" name="ida_heuristic" value="octile"/>
+                           <label class="option_label">Octile</label> <br>
+                           <input type="radio" name="ida_heuristic" value="chebyshev"/>
+                           <label class="option_label">Chebyshev</label> <br>
+                        </div>
+                        <header class="option_header">
+                           <h3>Options</h3>
+                        </header>
+                        <div class="optional sub_options">
+                           <input type="checkbox" class="allow_diagonal" checked>
+                           <label class="option_label">Allow Diagonal</label> <br>
+                           <input type="checkbox" class="dont_cross_corners">
+                           <label class="option_label">Don't Cross Corners</label> <br>
+                           <input class="spinner" name="astar_weight" value="1">
+                           <label class="option_label">Weight</label> <br>
+                           <input class="spinner" name="time_limit" value="10">
+                           <label class="option_label">Seconds limit</label> <br>
+                           <input type="checkbox" class="track_recursion" checked />
+                           <label class="option_label">Visualize recursion</label> <br> -->
+                       <!-- </div>
+                     </div>
+                  </div>
+
+                  <div class="panel-heading">
+                     <h4 class="panel-title">
+                        <button type="button" class="btn btn-block dropbtn algo-selection" data-toggle="collapse" data-target="#breadthfirst_section" data-algo="bfs" aria-expanded="false">BreadthFirst Search</button>
+                     </h4>
+                  </div>
+                 <div id="breadthfirst_section" class="finder_section panel-collapse collapse collapse in" data-parent="#algorithm_panel">
+                     <div class="panel-body">
+                        <header class="option_header">
+                           <h3>Options</h3>
+                        </header>
+                        <div class="optional sub_options">
+                           <input type="checkbox" class="allow_diagonal" checked>
+                           <label class="option_label">Allow Diagonal</label> <br>
+                           <input type="checkbox" class="bi-directional">
+                           <label class="option_label">Bi-directional</label> <br>
+                           <input type="checkbox" class="dont_cross_corners">
+                           <label class="option_label">Don't Cross Corners</label> <br>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="panel-heading">
+                        <h4 class="panel-title">
+                           <button type="button" class="btn btn-block dropbtn algo-selection" data-toggle="collapse" data-target="#iddepth_first_section" data-algo="idDepthFirst"  aria-expanded="false">ID Depth First Search</button>
+                        </h4>
+                     </div>
+                     <div id="iddepth_first_section" class="finder_section panel-collapse collapse collapse in" data-parent="#algorithm_panel">
+                        <div class="panel-body">
+                           <header class="option_header">
+                              <h3>Heuristic</h3>
+                           </header>
+                           <div id="iddepth_first_heuristic" class="sub_options">
+                              <input type="radio" name="iddepth_first_heuristic" value="manhattan" checked />
+                              <label class="option_label">Manhattan</label> <br>
+                              <input type="radio" name="iddepth_first_heuristic" value="euclidean"/>
+                              <label class="option_label">Euclidean</label> <br>
+                              <input type="radio" name="iddepth_first_heuristic" value="octile"/>
+                              <label class="option_label">Octile</label> <br>
+                              <input type="radio" name="iddepth_first_heuristic" value="chebyshev"/>
+                              <label class="option_label">Chebyshev</label> <br>
+                           </div>
+               
+                           <header class="option_header">
+                              <h3>Options</h3>
+                           </header>
+                           <div class="optional sub_options">
+                              <input type="checkbox" class="allow_diagonal" checked>
+                              <label class="option_label">Allow Diagonal</label> <br>
+                              <input type="checkbox" class="bi-directional">
+                              <label class="option_label">Bi-directional</label> <br>
+                              <input type="checkbox" class="dont_cross_corners">
+                              <label class="option_label">Don't Cross Corners</label> <br>
+                           </div>
+                        </div>
+                     </div>
+
+                  <div class="panel-heading">
+                     <h4 class="panel-title">
+                        <button type="button" class="btn btn-block dropbtn algo-selection" data-toggle="collapse" data-target="#bestfirst_section" data-algo="bestFirst"  aria-expanded="false">Best First Search</button>
+                     </h4>
+                  </div>
+                  <div id="bestfirst_section" class="finder_section panel-collapse collapse collapse in" data-parent="#algorithm_panel">
+                     <div class="panel-body">
+                        <header class="option_header">
+                           <h3>Heuristic</h3>
+                        </header>
+                        <div id="bestfirst_heuristic" class="sub_options">
+                           <input type="radio" name="bestfirst_heuristic" value="manhattan" checked />
+                           <label class="option_label">Manhattan</label> <br>
+                           <input type="radio" name="bestfirst_heuristic" value="euclidean"/>
+                           <label class="option_label">Euclidean</label> <br>
+                           <input type="radio" name="bestfirst_heuristic" value="octile"/>
+                           <label class="option_label">Octile</label> <br>
+                           <input type="radio" name="bestfirst_heuristic" value="chebyshev"/>
+                           <label class="option_label">Chebyshev</label> <br>
+                        </div>
+            
+                        <header class="option_header">
+                           <h3>Options</h3>
+                        </header>
+                        <div class="optional sub_options">
+                           <input type="checkbox" class="allow_diagonal" checked>
+                           <label class="option_label">Allow Diagonal</label> <br>
+                           <input type="checkbox" class="bi-directional">
+                           <label class="option_label">Bi-directional</label> <br>
+                           <input type="checkbox" class="dont_cross_corners">
+                           <label class="option_label">Don't Cross Corners</label> <br>
+                        </div>
+                     </div>
+                  </div>
+
+                 <div class="panel-heading">
+                     <h4 class="panel-title">
+                        <button type="button" class="btn btn-block dropbtn algo-selection" data-toggle="collapse" data-target="#dijkstra_section" data-algo="dijkstra"  aria-expanded="false">Dijkstra</button>
+                     </h4>
+                  </div>
+                  <div id="dijkstra_section" class="finder_section panel-collapse collapse collapse in" data-parent="#algorithm_panel">
+                     <div class="panel-body">
+                        <header class="option_header">
+                           <h3>Options</h3>
+                        </header>
+                        <div class="optional sub_options">
+                           <input type="checkbox" class="allow_diagonal" checked>
+                           <label class="option_label">Allow Diagonal</label> <br>
+                           <input type="checkbox" class="bi-directional">
+                           <label class="option_label">Bi-directional</label> <br>
+                           <input type="checkbox" class="dont_cross_corners">
+                           <label class="option_label">Don't Cross Corners</label> <br>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="panel-heading">
+                     <h4 class="panel-title">
+                        <button type="button" class="btn btn-block dropbtn algo-selection" data-toggle="collapse" data-target="#jump_point_section" data-algo="jps" aria-expanded="false">Jump Point Search</button>
+                     </h4>
+                  </div>
+                  <div id="jump_point_section" class="finder_section panel-collapse collapse collapse in" data-parent="#algorithm_panel">
+                     <div class="panel-body">
+                        <header class="option_header">
+                           <h3>Heuristic</h3>
+                        </header>
+                        <div id="jump_point_heuristic" class="sub_options">
+                           <input type="radio" name="jump_point_heuristic" value="manhattan" checked />
+                           <label class="option_label">Manhattan</label> <br>
+                           <input type="radio" name="jump_point_heuristic" value="euclidean"/>
+                           <label class="option_label">Euclidean</label> <br>
+                           <input type="radio" name="jump_point_heuristic" value="octile"/>
+                           <label class="option_label">Octile</label> <br>
+                           <input type="radio" name="jump_point_heuristic" value="chebyshev"/>
+                           <label class="option_label">Chebyshev</label> <br>
+                        </div>
+                        <header class="option_header">
+                           <h3>Options</h3>
+                        </header>
+                        <div class="optional sub_options">
+                           <input type="checkbox" class="track_recursion" checked>
+                           <label class="option_label">Visualize recursion</label> <br>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="panel-heading">
+                     <h4 class="panel-title">
+                        <button type="button" class="btn btn-block dropbtn algo-selection" data-toggle="collapse" data-target="#orth_jump_point_section" data-algo="orthoJps" aria-expanded="false">Orthogonal Jump Point Search</button>
+                     </h4>
+                  </div>
+                  <div id="orth_jump_point_section" class="finder_section panel-collapse collapse in" data-parent="#algorithm_panel">
+                     <div class="panel-body">
+                        <header class="option_header">
+                           <h3>Heuristic</h3>
+                        </header>
+                        <div id="orth_jump_point_heuristic" class="sub_options">
+                           <input type="radio" name="orth_jump_point_heuristic" value="manhattan" checked />
+                           <label class="option_label">Manhattan</label> <br>
+                           <input type="radio" name="orth_jump_point_heuristic" value="euclidean"/>
+                           <label class="option_label">Euclidean</label> <br>
+                           <input type="radio" name="orth_jump_point_heuristic" value="octile"/>
+                           <label class="option_label">Octile</label> <br>
+                           <input type="radio" name="orth_jump_point_heuristic" value="chebyshev"/>
+                           <label class="option_label">Chebyshev</label> <br>
+                        </div>
+                        <header class="option_header">
+                           <h3>Options</h3>
+                        </header>
+                        <div class="optional sub_options">
+                           <input type="checkbox" class="track_recursion" checked>
+                           <label class="option_label">Visualize recursion</label> <br>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="panel-heading">
+                     <h4 class="panel-title">
+                        <button type="button" class="btn btn-block dropbtn algo-selection" data-toggle="collapse" data-target="#multiple_stops_section" data-algo="multiStop" aria-expanded="false">Multiple Stops</button>
+                     </h4>
+                  </div>
+                  <div id="multiple_stops_section" class="finder_section panel-collapse collapse collapse in" data-parent="#algorithm_panel">
+                        <div class="panel-body">
+                           <header class="option_header">
+                              <h3>Heuristic</h3>
+                           </header>
+                           <div id="multistop_heuristic" class="sub_options">
+                              <input type="radio" name="multistop_heuristic" value="manhattan" checked />
+                              <label class="option_label">Manhattan</label> <br>
+                              <input type="radio" name="multistop_heuristic" value="euclidean"/>
+                              <label class="option_label">Euclidean</label> <br>
+                              <input type="radio" name="multistop_heuristic" value="octile"/>
+                              <label class="option_label">Octile</label> <br>
+                              <input type="radio" name="multistop_heuristic" value="chebyshev"/>
+                              <label class="option_label">Chebyshev</label> <br>
+                           </div>
+               
+                           <header class="option_header">
+                              <h3>Options</h3>
+                           </header>
+                           <div class="optional sub_options">
+                              <input type="checkbox" class="allow_diagonal" checked>
+                              <label class="option_label">Allow Diagonal</label> <br>
+                              <input type="checkbox" class="bi-directional">
+                              <label class="option_label">Bi-directional</label> <br>
+                              <input type="checkbox" class="dont_cross_corners">-->
+                              <!--<label class="option_label">Don't Cross Corners</label> <br>
+                              <input class="spinner" name="max_cost" style="width: 150px;">
+                              <label class="option_label">Maximum Possible Cost</label> <br>
+                           </div>
+                        </div>
+                     </div>
+         
+                  <div class="d-none d-md-block">
+                        <button class="btn btn-info btn-lg px-5 start-stop-btn btn-block">
+                        Visualize
+                        </button>
+                     </div>
+                </div> #algorithm_panel -->
+   
+
+            <section class="graph d-flex justify-content-center row" id="grid">
+               <canvas id="graph-canvas" resize></canvas>
+            </section>
+         </section>
+      </section>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script
+         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+         crossorigin="anonymous"
+         ></script>
+      <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+         crossorigin="anonymous"
+         ></script>
+      <script
+         src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+         crossorigin="anonymous"
+         ></script>
+      <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.2/paper-full.min.js"
+         crossorigin="anonymous"
+         ></script>
+      <script src="Graph.js"></script>
+      <script src="Grid.js"></script>
+      <script src="Runner.js"></script>
+      <script src="utilities.js"></script>
+      <script src="States.js"></script>
+      <script src="Node.js"></script>
+      <script src="DiagonalOptions.js"></script>
+      <script src="App.js"></script>
+      <script src="Path.js"></script>
+      <script src="MinHeap.js"></script>
+      <script src="block_generators.js"></script>
+      <script src="Finders/AStar.js"></script>
+      <script src="Finders/IDAStar.js"></script>
+      <script src="Finders/BreadthFirstSearch.js"></script>
+      <script src="Finders/IDDepthFirstSearch.js"></script>
+      <script src="Finders/MinPathSort.js"></script>
+      <script src="Finders/MultipleStops.js"></script>
+   </body>
+</html>
